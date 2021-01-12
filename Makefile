@@ -18,8 +18,8 @@ test: mock
 build:
 	for app in $(apps) ;\
 	do \
-		GOOS=linux GOARCH="amd64" go build -o dist/$$app-linux-amd64 ./cmd/$$app/; \
-		GOOS=darwin GOARCH="amd64" go build -o dist/$$app-darwin-amd64 ./cmd/$$app/; \
+		CGO_ENABLED=0 GOOS=linux GOARCH="amd64" go build -o dist/$$app-linux-amd64 ./cmd/$$app/; \
+		CGO_ENABLED=0 GOOS=darwin GOARCH="amd64" go build -o dist/$$app-darwin-amd64 ./cmd/$$app/; \
 	done
 .PHONY: cover
 cover: test
